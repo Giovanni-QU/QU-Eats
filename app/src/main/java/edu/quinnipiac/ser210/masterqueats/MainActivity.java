@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,15 +21,21 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private TextView testText;
+    private EditText first,last,dob;
+    HashMap<String, Object> user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        first = findViewById(R.id.first);
+        last = findViewById(R.id.last);
+        dob = findViewById(R.id.dob);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
+        user = new HashMap<>();
         user.put("first", "Giovanni");
         user.put("last", "Greco");
         user.put("born", 1999);
@@ -80,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void generateUser(){
+        user.put("first", first.getText().toString());
+        user.put("last", last.getText().toString());
+        user.put("born", dob.getText());
     }
 
 }
