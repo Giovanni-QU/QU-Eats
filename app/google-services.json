@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "556719602378",
+    "firebase_url": "https://qu-eats.firebaseio.com",
+    "project_id": "qu-eats",
+    "storage_bucket": "qu-eats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556719602378:android:f3ab2a0cd3927746",
+        "android_client_info": {
+          "package_name": "edu.quinnipiac.ser210.masterqueats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6NCpz8MkhkDHJJONPbNKGXBjrOwqoVTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556719602378:android:9a46752f6f964d2a",
+        "android_client_info": {
+          "package_name": "edu.quinnipiac.ser210.qu_eats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6NCpz8MkhkDHJJONPbNKGXBjrOwqoVTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556719602378:android:7dcd70a2fa333afe",
+        "android_client_info": {
+          "package_name": "edu.quinnipiac.ser210.queatsfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6NCpz8MkhkDHJJONPbNKGXBjrOwqoVTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556719602378-q6ch5vd8nn9adp53u5kfgvv6pfkdjs2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
