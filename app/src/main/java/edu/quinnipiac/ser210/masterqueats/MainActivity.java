@@ -1,10 +1,12 @@
 package edu.quinnipiac.ser210.masterqueats;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("first", "Giovanni");
         user.put("last", "Greco");
-        user.put("born", 1999);
+        user.put("qcard", 2306343);
+        user.put("email", "gagreco@qu.edu");
+        user.put("room", "Village 481");
+        user.put("phone", "8604719580");
 
 
         //adds a user w first and last name
@@ -50,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
                         Log.w("fail", "Error adding document", e);
                     }
                 });
+
+
+
+
+
+
 
 
 
@@ -80,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this,PlaceOrderActivity.class);
+        startActivity(intent);
+    }
 }
 
