@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         user.put("first", first.getText().toString());
         user.put("last", last.getText().toString());
         user.put("born", dob.getText());
+        user.put("qcard",11223344);
     }
 
 }
