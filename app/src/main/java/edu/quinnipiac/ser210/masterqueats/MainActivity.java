@@ -22,6 +22,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private TextView testText;
+    private HashMap<String,Object>user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
+        user = new HashMap<>();
         user.put("first", "Giovanni");
         user.put("last", "Greco");
         user.put("qcard", 2306343);
@@ -97,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this,PlaceOrderActivity.class);
         startActivity(intent);
+    }
+    public void sendToDB(){
+        user.put("first", "Giovanni");
+        user.put("last", "Greco");
+        user.put("qcard", 2306343);
+        user.put("email", "gagreco@qu.edu");
+        user.put("room", "Village 481");
+        user.put("phone", "8604719580");
     }
 }
 
