@@ -28,12 +28,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView textViewPrice;
         ImageView imageViewIcon;
         CheckBox checkBox;
+        TextView nameLbl;
 
         public MyViewHolder(View itemView) {
             super(itemView);
            // this.textViewPrice = (TextView) itemView.findViewById(R.id.textViewVersion);
            // this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
-            this.checkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+
+            this.textViewPrice = (TextView) itemView.findViewById(R.id.priceLbl);
+            this.nameLbl = (TextView) itemView.findViewById(R.id.name);
 
 
 
@@ -50,6 +53,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
+
+
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cards_layout, parent, false);
         Log.v("CustomAdapter", "onCreateViewHolder running");
@@ -57,24 +62,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
+
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder,  int listPosition) {
 
         Log.v("CustomAdapter", "onBindViewHolder " + dataSet.get(0).getName());
-       // TextView textViewPrice = holder.textViewPrice;
+       TextView textViewPrice = holder.textViewPrice;
+       textViewPrice.setText("$"+dataSet.get(listPosition).getPrice());
        // ImageView imageView = holder.imageViewIcon;
-        CheckBox checkbox = holder.checkBox;
-        checkbox.setText(dataSet.get(listPosition).getName());
+        TextView nameLbl = holder.nameLbl;
+        nameLbl.setText(dataSet.get(listPosition).getName());
        // textViewPrice.setText(" " +dataSet.get(listPosition).getPrice());
        // imageView.setImageResource(dataSet.get(listPosition).getImage());
-        Log.v("CustomAdapter", "onBindViewHolder "+ checkbox.getText());
+        Log.v("CustomAdapter", "onBindViewHolder "+ nameLbl.getText());
     }
 
     @Override
     public int getItemCount() {
         Log.v("CustomAdapter", "getItemCount" + dataSet.size());
-        return dataSet.size();
+        return 38;
     }
 }
