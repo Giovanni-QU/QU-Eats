@@ -23,8 +23,8 @@ public class MyData {
     static String[] grillNameArray = {};
     static String[] snacksNameArray = {};
     static String[] drinksNameArray = {};
-    static ArrayList<String> nameList = new ArrayList<String>();
-    static double[] priceArray = {};
+    static ArrayList<String> nameList;
+    static ArrayList<String> priceList;
     public String tempname;
     static Integer[] drawableArray = {
             //R.drawable/};
@@ -38,130 +38,65 @@ public class MyData {
             "ufwZ6rxXunT74CxkmEee", "uizzDlSCveD6DeJMexFi", "vCTGWfHNUrVt6eCbYVc4", "vSpqBush49SwxuwQUQWG", "xwxvqu1eOxKPiI0kt4FB",
             "yXIibGReaHi2hY8FaAab", "z8pAJSyEHLG6jpqQR5Hq", "zLCsGlHqxTmXRA59Jzqt"};
     static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-private populateNames popNames;
+    protected CollectionReference Colref;
+    protected DocumentReference Docref;
+    private FirebaseFirestore db;
+
+
+
+
     public MyData() {
 
-popNames = new populateNames();
-nameList = popNames.sendNames();
 
 
-    }
-    private class populateNames implements OnCompleteListener<QuerySnapshot> {
-        private ArrayList<String> names;
-        protected CollectionReference Colref;
-        protected DocumentReference Docref;
-        private FirebaseFirestore db;
+        nameList = new ArrayList<String>();
+        priceList = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
+        Docref = db.collection("menu").document("items");
+        Colref = Docref.collection("allItems");
 
-        public populateNames() {
-            Log.v("pop constructor ", " is running");
-            names = new ArrayList<String>();
-            db = FirebaseFirestore.getInstance();
-            Docref = db.collection("menu").document("items");
-            Colref = Docref.collection("allItems");
-
-            //accessing document items
-            Colref.get().addOnCompleteListener(this);
-            //current: .get() is running, so onComplete should be triggered, it is not running
-            //PlaceOrderActivity creates instance of this class and populates the dataModel using this data.
-            // Data Model is then applied to a Custom Adapter and displayed in UI
-        }
-        @Override
-        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-            Log.v("OnComplete ", " is running");
-            if (task.isSuccessful()) {
-                Log.v("onComplete ", " running");
-                Log.d("onComplete", "isSuccessful");
-
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.v("individualDocs", "DocumentSnapshot data: " + document.getData().get("name"));
+        Log.v("PlaceOrderActivity", ".get() is being called");
+        //pulling menu data from DB
+        Colref
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("msg", document.getId() + " => " + document.getData().get("name"));
+                                populateNameList(document.getData().get("name").toString());
+                                populatePriceList(document.getData().get("price").toString());
 
 
-                    addToNames(document.getData().get("name").toString());
-
-                }
-            } else {
-                Log.d("MSG", "Error getting documents: ", task.getException());
-            }
-        }
-        public void addToNames(String name) {
-            Log.v("addToNames", " " + name);
-            if (names.isEmpty()) {
-                names.set(0, name);
-            } else {
-                names.add(name);
-            }
-        }
-
-        public ArrayList<String> sendNames() {
-            Log.v("sendNames", "msg");
-            return names;
-        }
-
-
-        /*public void setNameArray() {
-            Log.v("set nameArray ", " is running");
-            //reference to document items inside menu
-            //  DocumentReference ref = db.collection("menu").document("items");
-            Docref = db.collection("menu").document("items");
-            Colref = Docref.collection("allItems");
-
-
-            //accessing document items
-            Colref.get().addOnCompleteListener(this);
-            Log.v("set nameArray ", " " + this.sendNames());
-            //current: .get() is running, so onComplete should be triggered, it is not running
-*/
-
-          /*  Log.v("for loop ", "is running ");
-            ref.document(ids[i]).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            tempname = document.getData().get("name").toString();
-                            nameList.add(tempname);
-                            //current: nameList isn't updated in parent class, list is null
-                            Log.d("individualDocs", "DocumentSnapshot data: " + document.getData().get("name"));
-                            Log.v("nameList ", " " + nameList.get(0));
+                            }
                         } else {
-                            Log.d("item doc level", "No such document");
+                            Log.d("msg", "Error getting documents: ", task.getException());
                         }
-                    } else {
-                        Log.d("tag", "get failed with ", task.getException());
                     }
-                }
+                });
+    }
 
-            });
-
-
-        }
-*/
-
-
-        }
+    private void populatePriceList(String price) {
+    priceList.add(price);
+    Log.v("popPriceList", " "+ price );
+    }
 
 
+    private void populateNameList(String name) {
+        nameList.add(name);
+    }
 
 
-
-      /*  @Override
-        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-            Log.d("onComplete", "isSuccessful");
-
-            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                Log.d("individualDocs", "DocumentSnapshot data: " + document.getData().get("name"));
-                nameList.add(document.getData().get("name").toString());
-            }
-        }
-        */
-
-
-
-    public String getName(int i) {
+    public String getName(int i){
         return nameList.get(i);
     }
+    public String getPrice(int i){
+        return priceList.get(i);
     }
+        }
+
+
 
 
 
