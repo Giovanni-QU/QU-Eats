@@ -68,9 +68,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder,  int listPosition) {
 
-        Log.v("CustomAdapter", "onBindViewHolder " + dataSet.get(0).getName());
+
        TextView textViewPrice = holder.textViewPrice;
        textViewPrice.setText("$"+dataSet.get(listPosition).getPrice());
+       Log.v("onBindViewHolder", " Price : "+ textViewPrice.getText());
        // ImageView imageView = holder.imageViewIcon;
         TextView nameLbl = holder.nameLbl;
         nameLbl.setText(dataSet.get(listPosition).getName());

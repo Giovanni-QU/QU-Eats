@@ -18,14 +18,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MyData {
-    static String[] nameArray;
-    static String[] breakfastNameArray = {};
-    static String[] grillNameArray = {};
-    static String[] snacksNameArray = {};
-    static String[] drinksNameArray = {};
+    static ArrayList<String> breakfastNameList;
+    static ArrayList<String> breakfastPriceList;
+    static ArrayList<String> grillNameList;
+    static ArrayList<String> grillPriceList;
+    static ArrayList<String> snackNameList;
+    static ArrayList<String> snackPriceList;
+    static ArrayList<String> drinkNameList;
+    static ArrayList<String> drinkPriceList;
     static ArrayList<String> nameList;
     static ArrayList<String> priceList;
-    public String tempname;
+
     static Integer[] drawableArray = {
             //R.drawable/};
     };
@@ -37,7 +40,6 @@ public class MyData {
             "lpHwEKSGGO3NYGfHSzak", "mLMDgcRoYV2gnm3cuwiS", "oAL4496Rv2PgmppWuaZo", "pX0clObEyzhfvitfAYpd", "poKo0hDfgiC8lRPuhnXu",
             "ufwZ6rxXunT74CxkmEee", "uizzDlSCveD6DeJMexFi", "vCTGWfHNUrVt6eCbYVc4", "vSpqBush49SwxuwQUQWG", "xwxvqu1eOxKPiI0kt4FB",
             "yXIibGReaHi2hY8FaAab", "z8pAJSyEHLG6jpqQR5Hq", "zLCsGlHqxTmXRA59Jzqt"};
-    static Integer[] id_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
@@ -47,16 +49,24 @@ public class MyData {
 
     public MyData() {
 
-
-
-        nameList = new ArrayList<String>();
+       nameList = new ArrayList<String>();
         priceList = new ArrayList<>();
-        db = FirebaseFirestore.getInstance();
+        /* db = FirebaseFirestore.getInstance();
         Docref = db.collection("menu").document("items");
         Colref = Docref.collection("allItems");
 
         Log.v("PlaceOrderActivity", ".get() is being called");
         //pulling menu data from DB
+        */
+
+        db = FirebaseFirestore.getInstance();
+        Docref = db.collection("menu").document("items");
+        //breakfast items
+        breakfastNameList = new ArrayList<String>();
+        breakfastPriceList = new ArrayList<>();
+        Colref = Docref.collection("breakfast");
+
+
         Colref
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -65,8 +75,8 @@ public class MyData {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
-                                populateNameList(document.getData().get("name").toString());
-                                populatePriceList(document.getData().get("price").toString());
+                                populateBreakfastNameList(document.getData().get("name").toString());
+                                populateBreakfastPriceList(document.getData().get("price").toString());
 
 
                             }
@@ -75,16 +85,135 @@ public class MyData {
                         }
                     }
                 });
+
+        //grill menu
+       grillNameList = new ArrayList<String>();
+       grillPriceList = new ArrayList<>();
+        Colref = Docref.collection("grill");
+
+
+        Colref
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("msg", document.getId() + " => " + document.getData().get("name"));
+                                populateGrillNameList(document.getData().get("name").toString());
+                                populateGrillPriceList(document.getData().get("price").toString());
+
+
+                            }
+                        } else {
+                            Log.d("msg", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        //Snacks Menu
+       snackNameList = new ArrayList<String>();
+       snackPriceList = new ArrayList<>();
+        Colref = Docref.collection("snacks");
+
+
+        Colref
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("msg", document.getId() + " => " + document.getData().get("name"));
+                                populateSnacksNameList(document.getData().get("name").toString());
+                                populateSnacksPriceList(document.getData().get("price").toString());
+
+
+                            }
+                        } else {
+                            Log.d("msg", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        //Drinks menu
+        drinkNameList = new ArrayList<String>();
+        drinkPriceList = new ArrayList<>();
+        Colref = Docref.collection("drinks");
+
+
+        Colref
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("msg", document.getId() + " => " + document.getData().get("name"));
+                                populateDrinkNameList(document.getData().get("name").toString());
+                                populateDrinkPriceList(document.getData().get("price").toString());
+
+
+                            }
+                        } else {
+                            Log.d("msg", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+    private void populateBreakfastPriceList(String price) {
+        breakfastPriceList.add(price);
+        Log.v("popPriceList", " "+ price );
     }
 
-    private void populatePriceList(String price) {
-    priceList.add(price);
-    Log.v("popPriceList", " "+ price );
+    private void populateBreakfastNameList(String name) {
+        breakfastNameList.add(name);
+    }
+    private void populateGrillPriceList(String price) {
+        grillPriceList.add(price);
+        Log.v("popPriceList", " "+ price );
     }
 
+    private void populateGrillNameList(String name) {
+        grillNameList.add(name);
+    }
+    private void populateSnacksNameList(String name) {
+        snackNameList.add(name);
+    }
+    private void populateSnacksPriceList(String price) {
+        snackPriceList.add(price);
+        Log.v("popPriceList", " "+ price );
+    }
+    private void populateDrinkNameList(String name) {
+        drinkNameList.add(name);
+    }
+    private void populateDrinkPriceList(String price) {
+        drinkPriceList.add(price);
+        Log.v("popPriceList", " "+ price );
+    }
+    public void populatePriceList() {
 
-    private void populateNameList(String name) {
-        nameList.add(name);
+        //populating full price list
+        priceList.addAll(breakfastPriceList);
+        priceList.addAll(grillPriceList);
+        priceList.addAll(snackPriceList);
+        priceList.addAll(drinkPriceList);
+
+       // nameList.add(price);
+
+    }
+
+    public void populateNameList(){
+        //populating full name list to send to model
+        nameList.addAll(breakfastNameList);
+        nameList.addAll(grillNameList);
+        nameList.addAll(snackNameList);
+        nameList.addAll(drinkNameList);
+
+       // nameList.add(name);
+      Log.v("popNameList", "");
+
     }
 
 
