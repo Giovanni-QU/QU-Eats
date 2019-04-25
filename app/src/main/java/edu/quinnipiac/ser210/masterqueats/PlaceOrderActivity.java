@@ -31,7 +31,7 @@ import java.util.List;
 
 public class PlaceOrderActivity extends AppCompatActivity {
 
-    private static RecyclerView.Adapter adapter;
+    private static CustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
@@ -41,6 +41,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
+    protected ArrayList<DataModel> order;
 private ArrayList<String> nameList;
 
     @Override
@@ -48,7 +49,7 @@ private ArrayList<String> nameList;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
         theData = new MyData();
-
+        order = new ArrayList<DataModel>();
         data = new ArrayList<DataModel>();
     }
 
@@ -84,6 +85,10 @@ private ArrayList<String> nameList;
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+    public void onClickAdd(View view){
+        int position = adapter.getPosition(view);
+        order.add(data.get(position));
     }
 
 
@@ -139,7 +144,6 @@ private ArrayList<String> nameList;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
         return true;
     }
 

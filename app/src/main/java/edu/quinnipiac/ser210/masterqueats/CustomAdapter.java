@@ -39,9 +39,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             this.nameLbl = (TextView) itemView.findViewById(R.id.name);
 
 
-
-
-
         }
     }
 
@@ -77,6 +74,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
        // textViewPrice.setText(" " +dataSet.get(listPosition).getPrice());
        // imageView.setImageResource(dataSet.get(listPosition).getImage());
         Log.v("CustomAdapter", "onBindViewHolder "+ nameLbl.getText());
+    }
+
+    public int getPosition(View v){
+        return (int) v.getTag();
     }
 
     @Override

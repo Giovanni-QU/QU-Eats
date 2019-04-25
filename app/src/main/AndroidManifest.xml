@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlaceOrderActivity"></activity>
+        <activity android:name=".PlaceOrderActivity"/>
     </application>
 
 </manifest>

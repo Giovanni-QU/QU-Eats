@@ -7,9 +7,9 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
         android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,10 +20,10 @@
         android:id="@+id/nextScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="162dp"
-        android:text="Button"
+        android:layout_marginEnd="160dp"
+        android:layout_marginTop="76dp"
         android:onClick="onClick"
+        android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test" />
 
