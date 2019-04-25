@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/foodbackground">
+
+
+
+
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_alignParentLeft="true"
+        android:text="Logout"
+        android:onClick = "onClickLogout"/>
+
+    <Button
+        android:id="@+id/MainCafeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="78dp"
+        android:layout_centerVertical="true"
+
+        android:text="The Main Cafe"
+        android:onClick = "onClickMainCafe"/>
+    <Button
+        android:id="@+id/BobCatDenBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/MainCafeBtn"
+
+
+        android:text="The Bobcat Den"
+        android:onClick = "onClickMainCafe"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="175dp"
+        android:text="Select a Dining Hall"
+        android:textSize="24dp"
+        android:textColor="#000"
+        />
+
+
+</RelativeLayout>
