@@ -39,7 +39,7 @@ public class OrderCardsActivity extends AppCompatActivity{
         Intent inc = getIntent();
         name = findViewById(R.id.name);
         priceLbl = findViewById(R.id.priceLbl);
-        
+
 
     }
 
