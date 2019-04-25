@@ -1,6 +1,7 @@
 package edu.quinnipiac.ser210.masterqueats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,6 +90,10 @@ private ArrayList<String> nameList;
     public void onClickAdd(View view){
         int position = adapter.getPosition(view);
         order.add(data.get(position));
+        //to see if this even works at all
+        Intent i = new Intent(this,OrderCardsActivity.class);
+        i.putExtra("order",order);
+        startActivity(i);
     }
 
 
