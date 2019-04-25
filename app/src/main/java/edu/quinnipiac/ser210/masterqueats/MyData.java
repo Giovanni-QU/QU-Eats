@@ -58,7 +58,7 @@ public class MyData {
         Log.v("PlaceOrderActivity", ".get() is being called");
         //pulling menu data from DB
         */
-
+        //calling DB and navigating to correct collection
         db = FirebaseFirestore.getInstance();
         Docref = db.collection("menu").document("items");
         //breakfast items
@@ -66,7 +66,7 @@ public class MyData {
         breakfastPriceList = new ArrayList<>();
         Colref = Docref.collection("breakfast");
 
-
+        //pulling data
         Colref
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -75,6 +75,7 @@ public class MyData {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
+                                //must pull data using method
                                 populateBreakfastNameList(document.getData().get("name").toString());
                                 populateBreakfastPriceList(document.getData().get("price").toString());
 
@@ -227,226 +228,6 @@ public class MyData {
 
 
 
-
-
-
-
-
-        //populates breakfastNameArray
-
-
-        //populates breakfastNameArray
-      /*  public void setBreakNameArray() {
-
-            //reference to document items inside menu
-            DocumentReference ref = db.collection("menu").document("items");
-            //accessing document items
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                            //accessing collection breakfast
-                            CollectionReference breakfast = document.getReference().collection("breakfast");
-
-
-                            //loop to populate
-                            for (int i = 0; i < 8; i++) {
-
-
-                                breakfast.document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                                                tempname = document.get("name").toString();
-                                            } else {
-                                                Log.d("msg", "No such document");
-                                            }
-                                        } else {
-                                            Log.d("tag", "get failed with ", task.getException());
-                                        }
-                                    }
-                                });
-                                breakfastNameArray[i] = tempname;
-                            }
-
-
-                        } else {
-                            Log.d("msg", "No such document");
-                        }
-                    } else {
-                        Log.d("msg", "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-
-
-        //populates breakfastNameArray
-        public void setGrillNameArray() {
-
-
-            //reference to document items inside menu
-            DocumentReference ref = db.collection("menu").document("items");
-            //accessing document items
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                            //accessing collection breakfast
-                            CollectionReference breakfast = document.getReference().collection("grill");
-
-
-                            //loop to populate
-                            for (int i = 0; i < 10; i++) {
-
-
-                                breakfast.document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                                                tempname = document.get("name").toString();
-                                            } else {
-                                                Log.d("msg", "No such document");
-                                            }
-                                        } else {
-                                            Log.d("tag", "get failed with ", task.getException());
-                                        }
-                                    }
-                                });
-                                grillNameArray[i] = tempname;
-                            }
-
-
-                        } else {
-                            Log.d("msg", "No such document");
-                        }
-                    } else {
-                        Log.d("msg", "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-
-
-        //populates breakfastNameArray
-        public void setSnacksNameArray() {
-
-
-            //reference to document items inside menu
-            DocumentReference ref = db.collection("menu").document("items");
-            //accessing document items
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                            //accessing collection breakfast
-                            CollectionReference breakfast = document.getReference().collection("snacks");
-
-
-                            //loop to populate
-                            for (int i = 0; i < 10; i++) {
-
-
-                                breakfast.document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                                                tempname = document.get("name").toString();
-                                            } else {
-                                                Log.d("msg", "No such document");
-                                            }
-                                        } else {
-                                            Log.d("tag", "get failed with ", task.getException());
-                                        }
-                                    }
-                                });
-                                snacksNameArray[i] = tempname;
-                            }
-
-
-                        } else {
-                            Log.d("msg", "No such document");
-                        }
-                    } else {
-                        Log.d("msg", "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-
-
-        //populates breakfastNameArray
-        public void setDrinksNameArray() {
-
-
-            //reference to document items inside menu
-            DocumentReference ref = db.collection("menu").document("items");
-            //accessing document items
-            ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                            //accessing collection breakfast
-                            CollectionReference breakfast = document.getReference().collection("drinks");
-
-
-                            //loop to populate
-                            for (int i = 0; i < 10; i++) {
-
-
-                                breakfast.document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Log.d("msg", "DocumentSnapshot data: " + document.getData());
-                                                tempname = document.get("name").toString();
-                                            } else {
-                                                Log.d("msg", "No such document");
-                                            }
-                                        } else {
-                                            Log.d("tag", "get failed with ", task.getException());
-                                        }
-                                    }
-                                });
-                                drinksNameArray[i] = tempname;
-                            }
-
-
-                        } else {
-                            Log.d("msg", "No such document");
-                        }
-                    } else {
-                        Log.d("msg", "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-
-
-    */
 
 
 

@@ -64,7 +64,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="271dp"
-        android:text="Enter your information then press
-        the button below to continue." />
+        android:text="Enter your information then press the button below to continue." />
 
 </RelativeLayout>
