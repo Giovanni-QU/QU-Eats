@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +43,9 @@ public class PlaceOrderActivity extends AppCompatActivity {
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
+    private Button cartBtn;
+    private Button pickupBtn;
+    private Button delivBtn;
 private ArrayList<String> nameList;
 
     @Override
@@ -50,6 +54,9 @@ private ArrayList<String> nameList;
         setContentView(R.layout.activity_place_order);
         theData = new MyData();
         data = new ArrayList<DataModel>();
+        cartBtn = findViewById(R.id.addToCartButton);
+        pickupBtn = findViewById(R.id.pickupButton);
+        delivBtn = findViewById(R.id.deliveryButton);
     }
 
 
@@ -104,6 +111,18 @@ private ArrayList<String> nameList;
         //recyclerView.setAdapter(adapter);
         recyclerView.setAdapter(mSectionedAdapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    public void onClickPickup(View view) {
+        cartBtn.setEnabled(true);
+
+
+
+    }
+
+    public void onClickDeliv(View view) {
+        cartBtn.setEnabled(true);
+
     }
 
 
