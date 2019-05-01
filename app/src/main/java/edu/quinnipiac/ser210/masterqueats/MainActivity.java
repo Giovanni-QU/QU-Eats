@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+      /*  FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+*/
     }
 
     public void onClick(View view) {

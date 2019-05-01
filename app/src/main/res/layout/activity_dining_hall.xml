@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/WelcomeText"
 
-        android:layout_alignParentLeft="true"
         android:text="Logout"
         android:onClick = "onClickLogout"/>
 
@@ -52,6 +52,18 @@
         android:textSize="24dp"
         android:textColor="#000"
         />
+
+    <TextView
+        android:id="@+id/WelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back, Giovanni"
+        android:textColor="#008000"
+        android:textSize="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+  />
 
 
 </RelativeLayout>

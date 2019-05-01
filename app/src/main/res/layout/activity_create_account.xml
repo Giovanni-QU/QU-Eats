@@ -3,49 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="25dp"
-        android:layout_toStartOf="@+id/createButton"
-        android:hint="First Name" />
+
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lastName"
+
+        android:layout_marginLeft="250dp"
         android:layout_alignTop="@+id/userName"
         android:hint="Password" />
-
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/firstName"
-        android:layout_marginEnd="58dp"
-        android:hint="Last Name" />
 
     <EditText
         android:id="@+id/qcard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/userName"
         android:layout_marginTop="198dp"
         android:hint="Qcard number" />
+
+    <EditText
+        android:id="@+id/RoomNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginTop="198dp"
+        android:hint="Room Number"  />
 
     <EditText
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/firstName"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="120dp"
-        android:hint="Username" />
+        android:hint="First and Last Name" />
+
 
     <Button
         android:id="@+id/createButton"
@@ -54,7 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="133dp"
-        android:text="Create"
+        android:text="Create Account"
         android:onClick="onClickCreate"/>
 
     <TextView
@@ -65,5 +60,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="271dp"
         android:text="Enter your information then press the button below to continue." />
+
+
 
 </RelativeLayout>
