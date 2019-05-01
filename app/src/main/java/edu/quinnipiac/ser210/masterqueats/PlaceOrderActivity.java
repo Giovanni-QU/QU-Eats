@@ -6,12 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +44,9 @@ public class PlaceOrderActivity extends AppCompatActivity {
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
+    private Button cartBtn;
+    private Button pickupBtn;
+    private Button delivBtn;
     protected ArrayList<DataModel> order;
 private ArrayList<String> nameList;
 
@@ -52,6 +57,9 @@ private ArrayList<String> nameList;
         theData = new MyData();
         order = new ArrayList<DataModel>();
         data = new ArrayList<DataModel>();
+        cartBtn = findViewById(R.id.addToCartButton);
+        pickupBtn = findViewById(R.id.pickupButton);
+        delivBtn = findViewById(R.id.deliveryButton);
     }
 
 
@@ -64,6 +72,8 @@ private ArrayList<String> nameList;
             // theData.id_[i],
             //  theData.drawableArray[i]
             //Log.v("PlaceOrderActivity", "checking text" + nameList.get(i));
+            theData.populatePriceList();
+            theData.populateNameList();
             data.add(new DataModel(theData.getName(i), theData.getPrice(i)));
 
 
@@ -74,6 +84,7 @@ private ArrayList<String> nameList;
 
         myOnClickListener = new MyOnClickListener(this);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.HORIZONTAL));
 
 
         layoutManager = new LinearLayoutManager(this);
@@ -84,7 +95,24 @@ private ArrayList<String> nameList;
 
         Log.v("PlaceOrderActivity", "data model is being created");
         adapter = new CustomAdapter(data);
-        recyclerView.setAdapter(adapter);
+        //This is the code to provide a sectioned list
+        List<SimpleSectionedRecyclerAdapter.Section> sections =
+                new ArrayList<SimpleSectionedRecyclerAdapter.Section>();
+
+        //Sections
+        sections.add(new SimpleSectionedRecyclerAdapter.Section(0,"Breakfast"));
+        sections.add(new SimpleSectionedRecyclerAdapter.Section(8,"Grill Food"));
+        sections.add(new SimpleSectionedRecyclerAdapter.Section(18,"Snacks"));
+        sections.add(new SimpleSectionedRecyclerAdapter.Section(28,"Drinks"));
+
+        //Add your adapter to the sectionAdapter
+        SimpleSectionedRecyclerAdapter.Section[] dummy = new SimpleSectionedRecyclerAdapter.Section[sections.size()];
+        SimpleSectionedRecyclerAdapter mSectionedAdapter = new
+                SimpleSectionedRecyclerAdapter(this,R.layout.section,R.id.section_text,adapter);
+        mSectionedAdapter.setSections(sections.toArray(dummy));
+
+        //recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(mSectionedAdapter);
         recyclerView.setLayoutManager(layoutManager);
     }
     public void onClickAdd(View view){
@@ -94,6 +122,18 @@ private ArrayList<String> nameList;
         Intent i = new Intent(this,OrderCardsActivity.class);
         i.putExtra("order",order);
         startActivity(i);
+    }
+
+    public void onClickPickup(View view) {
+        cartBtn.setEnabled(true);
+
+
+
+    }
+
+    public void onClickDeliv(View view) {
+        cartBtn.setEnabled(true);
+
     }
 
 
@@ -149,6 +189,7 @@ private ArrayList<String> nameList;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
+
         return true;
     }
 

@@ -9,12 +9,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -65,9 +59,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder,  int listPosition) {
 
-        Log.v("CustomAdapter", "onBindViewHolder " + dataSet.get(0).getName());
+        //this is where we can modify what is being displayed per card
        TextView textViewPrice = holder.textViewPrice;
        textViewPrice.setText("$"+dataSet.get(listPosition).getPrice());
+       Log.v("onBindViewHolder", " Price : "+ textViewPrice.getText());
        // ImageView imageView = holder.imageViewIcon;
         TextView nameLbl = holder.nameLbl;
         nameLbl.setText(dataSet.get(listPosition).getName());
