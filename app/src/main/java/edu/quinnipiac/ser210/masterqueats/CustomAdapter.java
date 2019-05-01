@@ -77,6 +77,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public int getItemCount() {
         Log.v("CustomAdapter", "getItemCount" + dataSet.size());
-        return 38;
+        return dataSet.size();
     }
 }

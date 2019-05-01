@@ -46,24 +46,28 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private Button cartBtn;
     private Button pickupBtn;
     private Button delivBtn;
+    private String hall;
 private ArrayList<String> nameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
-        theData = new MyData();
+        hall = getIntent().getStringExtra("hall");
+        theData = new MyData(hall);
         data = new ArrayList<DataModel>();
         cartBtn = findViewById(R.id.addToCartButton);
         pickupBtn = findViewById(R.id.pickupButton);
         delivBtn = findViewById(R.id.deliveryButton);
+
+
     }
 
 
 
     public void onClick(View view) {
         //displaying data from Database
-        for (int i = 0; i < 38; i++) {
+        for (int i = 0; i < theData.getLength(); i++) {
             //  data.add(new DataModel(nameList.get(i)));
             // theData.priceArray[i],
             // theData.id_[i],
@@ -96,11 +100,22 @@ private ArrayList<String> nameList;
         List<SimpleSectionedRecyclerAdapter.Section> sections =
                 new ArrayList<SimpleSectionedRecyclerAdapter.Section>();
 
+
         //Sections
-        sections.add(new SimpleSectionedRecyclerAdapter.Section(0,"Breakfast"));
-        sections.add(new SimpleSectionedRecyclerAdapter.Section(8,"Grill Food"));
-        sections.add(new SimpleSectionedRecyclerAdapter.Section(18,"Snacks"));
-        sections.add(new SimpleSectionedRecyclerAdapter.Section(28,"Drinks"));
+       if(hall.equals("0")){
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(0,"Breakfast"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(8,"Grill Food"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(18,"Snacks"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(22,"Drinks"));
+        }
+       else{
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(0,"Breakfast"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(8,"Grill Food"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(18,"Snacks"));
+           sections.add(new SimpleSectionedRecyclerAdapter.Section(26,"Drinks"));
+       }
+
+
 
         //Add your adapter to the sectionAdapter
         SimpleSectionedRecyclerAdapter.Section[] dummy = new SimpleSectionedRecyclerAdapter.Section[sections.size()];

@@ -14,7 +14,14 @@ public class DiningHall extends AppCompatActivity {
     }
 
     public void onClickMainCafe(View view) {
-        Intent intent = new Intent(DiningHall.this,PlaceOrderActivity    .class);
+        Intent intent = new Intent(DiningHall.this,PlaceOrderActivity.class);
+        intent.putExtra("hall", "0");
         startActivity(intent);
     }
+    public void onBobcatDen(View view) {
+        Intent intent = new Intent(DiningHall.this,PlaceOrderActivity.class);
+        intent.putExtra("hall", "1");
+        startActivity(intent);
+    }
+
 }

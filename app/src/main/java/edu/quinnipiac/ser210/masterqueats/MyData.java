@@ -43,14 +43,18 @@ public class MyData {
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
+    private String hall;
 
 
 
 
-    public MyData() {
+    public MyData(String hallNum) {
 
        nameList = new ArrayList<String>();
         priceList = new ArrayList<>();
+
+        hall = hallNum;
+
         /* db = FirebaseFirestore.getInstance();
         Docref = db.collection("menu").document("items");
         Colref = Docref.collection("allItems");
@@ -76,10 +80,12 @@ public class MyData {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
                                 //must pull data using method
-                                populateBreakfastNameList(document.getData().get("name").toString());
-                                populateBreakfastPriceList(document.getData().get("price").toString());
+                                Log.v("checkingHall ", document.getData().get("hall").toString());
+                                if(checkHall(document.getData().get("hall").toString())) {
+                                    populateBreakfastNameList(document.getData().get("name").toString());
+                                    populateBreakfastPriceList(document.getData().get("price").toString());
 
-
+                                }
                             }
                         } else {
                             Log.d("msg", "Error getting documents: ", task.getException());
@@ -101,9 +107,11 @@ public class MyData {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
-                                populateGrillNameList(document.getData().get("name").toString());
-                                populateGrillPriceList(document.getData().get("price").toString());
-
+                                Log.v("checkingHall ", document.getData().get("hall").toString());
+                                if(checkHall(document.getData().get("hall").toString())) {
+                                    populateGrillNameList(document.getData().get("name").toString());
+                                    populateGrillPriceList(document.getData().get("price").toString());
+                                }
 
                             }
                         } else {
@@ -126,10 +134,12 @@ public class MyData {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
-                                populateSnacksNameList(document.getData().get("name").toString());
-                                populateSnacksPriceList(document.getData().get("price").toString());
+                                Log.v("checkingHall ", document.getData().get("hall").toString());
+                                if(checkHall(document.getData().get("hall").toString())) {
+                                    populateSnacksNameList(document.getData().get("name").toString());
+                                    populateSnacksPriceList(document.getData().get("price").toString());
 
-
+                                }
                             }
                         } else {
                             Log.d("msg", "Error getting documents: ", task.getException());
@@ -151,9 +161,12 @@ public class MyData {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("msg", document.getId() + " => " + document.getData().get("name"));
-                                populateDrinkNameList(document.getData().get("name").toString());
-                                populateDrinkPriceList(document.getData().get("price").toString());
-
+                                //checking hall first
+                                Log.v("checkingHall ", document.getData().get("hall").toString());
+                                if(checkHall(document.getData().get("hall").toString())) {
+                                    populateDrinkNameList(document.getData().get("name").toString());
+                                    populateDrinkPriceList(document.getData().get("price").toString());
+                                }
 
                             }
                         } else {
@@ -161,6 +174,12 @@ public class MyData {
                         }
                     }
                 });
+
+    }
+    public Boolean checkHall(String _hall){
+       // Log.v("checkingHall ", hall);
+        if(_hall.equals(hall) || _hall.equals("2")) return true;
+        else return false;
 
     }
     private void populateBreakfastPriceList(String price) {
@@ -224,7 +243,11 @@ public class MyData {
     public String getPrice(int i){
         return priceList.get(i);
     }
-        }
+
+    public int getLength() {
+        return breakfastNameList.size() + grillNameList.size() + snackNameList.size() + drinkNameList.size();
+    }
+}
 
 
 
