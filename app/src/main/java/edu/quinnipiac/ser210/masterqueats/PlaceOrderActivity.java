@@ -1,6 +1,7 @@
 package edu.quinnipiac.ser210.masterqueats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class PlaceOrderActivity extends AppCompatActivity {
 
-    private static RecyclerView.Adapter adapter;
+    private static CustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
@@ -47,6 +49,8 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private Button pickupBtn;
     private Button delivBtn;
     private String hall;
+    private ArrayList<DataModel> orders;
+
 private ArrayList<String> nameList;
 
     @Override
@@ -59,6 +63,8 @@ private ArrayList<String> nameList;
         cartBtn = findViewById(R.id.addToCartButton);
         pickupBtn = findViewById(R.id.pickupButton);
         delivBtn = findViewById(R.id.deliveryButton);
+        orders = new ArrayList<>();
+
 
 
     }
@@ -133,10 +139,31 @@ private ArrayList<String> nameList;
 
 
 
+
     }
 
     public void onClickDeliv(View view) {
         cartBtn.setEnabled(true);
+
+    }
+
+    public void onClickCartBtn(View view) {
+        adapter.populateOrderSet();
+        orders = adapter.getOrderSet();
+
+        Log.v("OnClickCartBtn", "is running");
+        if(orders!=null){
+            Intent intent = new Intent(PlaceOrderActivity.this,CartActivity.class);
+            intent.putExtra("orders", orders);
+            startActivity(intent);
+        }
+
+
+    }
+
+    public void onClickSelected(View view) {
+        Log.v("OnClickSelected", "is running");
+
 
     }
 
