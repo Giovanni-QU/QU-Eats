@@ -155,6 +155,7 @@ private ArrayList<String> nameList;
         if(orders!=null){
             Intent intent = new Intent(PlaceOrderActivity.this,CartActivity.class);
             intent.putExtra("orders", orders);
+            intent.putExtra("id", getIntent().getStringExtra("id"));
             startActivity(intent);
         }
 

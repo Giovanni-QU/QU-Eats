@@ -25,6 +25,7 @@ private EditText passwordEditText;
 private String qStr;
 private String pwdStr;
 private Boolean isNull;
+private String userIDQ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ private Boolean isNull;
         q = false;
         password = false;
         isNull = true;
+        userIDQ = "";
 
         qCardEditText = findViewById(R.id.Qcard);
         qStr = "";
@@ -61,6 +63,7 @@ private Boolean isNull;
                                 if (document.getData().get("qCard").toString().equals(qStr)) {
                                     Log.v("onComplete", qStr);
                                     setQ(true);
+                                    setUserIDQ(qStr);
                                     if(document.getData().get("password").toString().equals(pwdStr)){
                                         setPassword(true);
                                     }
@@ -88,6 +91,7 @@ private Boolean isNull;
             //then check q card and password are correct before advancing
             if(q && pwd) {
                 Intent intent = new Intent(Login.this, DiningHall.class);
+                intent.putExtra("id", userIDQ );
                 startActivity(intent);
             }
             else{
@@ -115,6 +119,10 @@ private Boolean isNull;
     }
     public void setPassword(Boolean b){
         password = b;
+    }
+    public void setUserIDQ(String s){
+        userIDQ = s;
+
     }
 
     public void onClickCreateAcct(View view){

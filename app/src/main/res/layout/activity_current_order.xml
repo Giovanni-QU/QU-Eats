@@ -4,23 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="163dp"
-        android:onClick="onClickOrder"
-        android:text="Return to Order" />
+
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/menuBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:onClick="onClickMain"
-        android:text="Return to Main Menu" />
+        android:text="Return to Dining Hall Menu" />
 
     <TextView
         android:id="@+id/textView2"

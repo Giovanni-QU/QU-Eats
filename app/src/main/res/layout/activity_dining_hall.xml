@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/WelcomeText"
-
+        android:textSize="10dp"
         android:text="Logout"
         android:onClick = "onClickLogout"/>
 
@@ -62,8 +62,19 @@
         android:textSize="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="40dp"
   />
+
+    <Button
+        android:id="@+id/currOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:textSize="10dp"
+        android:text="Current Order"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:onClick="onClickcurrOrder"
+        android:layout_toRightOf="@id/logoutBtn"/>
 
 
 </RelativeLayout>
