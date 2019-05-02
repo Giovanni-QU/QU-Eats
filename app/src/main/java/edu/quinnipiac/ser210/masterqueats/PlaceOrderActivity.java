@@ -44,7 +44,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     protected CollectionReference Colref;
     protected DocumentReference Docref;
     private FirebaseFirestore db;
-    private Button cartBtn;
+    protected static Button cartBtn;
     private Button pickupBtn;
     private Button delivBtn;
     protected ArrayList<DataModel> order;
