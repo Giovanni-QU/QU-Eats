@@ -1,7 +1,7 @@
 package edu.quinnipiac.ser210.masterqueats;
 
 import java.io.Serializable;
-
+//Created by Giovanni Greco
 public class DataModel implements Serializable {
 
     String name;

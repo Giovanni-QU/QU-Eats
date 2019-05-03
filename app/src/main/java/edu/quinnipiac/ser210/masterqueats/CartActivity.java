@@ -1,5 +1,5 @@
 package edu.quinnipiac.ser210.masterqueats;
-
+//created by Giovanni Greco
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -46,13 +46,17 @@ private double totalPrice;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        //pulls the orders array from the intent
         orders = (ArrayList<DataModel>) getIntent().getSerializableExtra("orders");
         orderFullStringArray = new String[orders.size()];
+        //populates the full string version of the order to be displayed
         for(int i = 0;i<orders.size();i++){
             orderFullStringArray[i] = orders.get(i).getName() + " .....  $" + orders.get(i).getPrice();
         }
         db = FirebaseFirestore.getInstance();
+
         ordersDB = db.collection("orders");
+        //displaying list
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, orderFullStringArray);
 
@@ -68,6 +72,7 @@ private double totalPrice;
     }
 
     private double calcTotal() {
+        //calcs total price
         double theTotal = 0;
         for(int i = 0;i<orders.size();i++){
             Double price = Double.parseDouble(orders.get(i).getPrice());
@@ -85,6 +90,7 @@ private double totalPrice;
 
     public void onClickPlace(View view) {
 
+    //creates an order object that is sent to the database
      orderObject = new HashMap<>();
      itemNames = new String[orders.size()];
 
@@ -98,8 +104,9 @@ private double totalPrice;
         findUsersName();
     }
 public void reactToClick(){
+        //sends order to database
     orderObject.put("name", userName);
-    orderObject.put("Item", Arrays.asList(itemNames));
+    orderObject.put("Items", Arrays.asList(itemNames));
     ordersDB.add(orderObject)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -117,6 +124,7 @@ public void reactToClick(){
     startActivity(intent);
 }
     private void findUsersName() {
+        //finds the name of the user
         db = FirebaseFirestore.getInstance();
         usersDB = db.collection("users");
         usersDB.get()

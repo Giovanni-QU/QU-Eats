@@ -1,5 +1,5 @@
 package edu.quinnipiac.ser210.masterqueats;
-
+//not created  by me, found on github
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;

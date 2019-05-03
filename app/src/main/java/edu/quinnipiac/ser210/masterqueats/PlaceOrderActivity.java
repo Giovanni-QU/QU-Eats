@@ -1,5 +1,5 @@
 package edu.quinnipiac.ser210.masterqueats;
-
+//Created by Giovanni Greco
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -40,7 +40,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
     static View.OnClickListener myOnClickListener;
-    private static ArrayList<Integer> removedItems;
+
     private MyData theData;
     protected CollectionReference Colref;
     protected DocumentReference Docref;
@@ -57,9 +57,11 @@ private ArrayList<String> nameList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_order);
+        //gets hall type
         hall = getIntent().getStringExtra("hall");
         theData = new MyData(hall);
         data = new ArrayList<DataModel>();
+        //initializes buttons
         cartBtn = findViewById(R.id.addToCartButton);
         pickupBtn = findViewById(R.id.pickupButton);
         delivBtn = findViewById(R.id.deliveryButton);
@@ -74,11 +76,7 @@ private ArrayList<String> nameList;
     public void onClick(View view) {
         //displaying data from Database
         for (int i = 0; i < theData.getLength(); i++) {
-            //  data.add(new DataModel(nameList.get(i)));
-            // theData.priceArray[i],
-            // theData.id_[i],
-            //  theData.drawableArray[i]
-            //Log.v("PlaceOrderActivity", "checking text" + nameList.get(i));
+
             theData.populatePriceList();
             theData.populateNameList();
             data.add(new DataModel(theData.getName(i), theData.getPrice(i)));
@@ -169,31 +167,6 @@ private ArrayList<String> nameList;
     }
 
 
-           /* Colref.get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot documentSnapshots) {
-                            if (documentSnapshots.isEmpty()) {
-                                Log.d("msg", "onSuccess: LIST EMPTY");
-                                return;
-                            } else {
-                                // Convert the whole Query Snapshot to a list
-                                // of objects directly! No need to fetch each
-                                // document.
-                                List<String> names = documentSnapshots.toObjects(String.class);
-
-                                // Add all to your list
-                                nameList.addAll(names);
-                                Log.d("nameList populated", "onSuccess: " + nameList);
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error getting data!!!", Toast.LENGTH_LONG).show();
-                }
-            });
-            */
 
 
     private static class MyOnClickListener implements View.OnClickListener {

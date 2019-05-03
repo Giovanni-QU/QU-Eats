@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+//Created by Giovanni Greco
 public class MyData {
     static ArrayList<String> breakfastNameList;
     static ArrayList<String> breakfastPriceList;
@@ -29,9 +29,8 @@ public class MyData {
     static ArrayList<String> nameList;
     static ArrayList<String> priceList;
 
-    static Integer[] drawableArray = {
-            //R.drawable/};
-    };
+
+    //ids of all menu docs
     private String[] ids = {"01J2fZRbUYFD53glC8Jb", "2R8iI6rbTU6UtSVVndFg", "847x5JRVQfrWpOF2QVCx", "8KDqWYCx548qYWOoiaui", "8qXDYOwTcx6IxUijvX6L",
             "CWJHvd2ZWYJqgp8goINM", "GSRTMyH6fPqARl72kgNU", "HhfNZfP8epPLTJABpFOY", "IDmynGBmAmMmVfLJi4g1", "JDG3RsvKHJmtz0RElJ6v",
             "JZ8T5MjDWrrwgfLsw5wF", "Km3blhOfuxqGxPBBWkBh", "NRwhKb8F9zupmcwAUhFt", "OGfkBXYcVQRZaBAppz4u", "OIQNNdZGTS9TvreeY6ri",
@@ -55,13 +54,7 @@ public class MyData {
 
         hall = hallNum;
 
-        /* db = FirebaseFirestore.getInstance();
-        Docref = db.collection("menu").document("items");
-        Colref = Docref.collection("allItems");
 
-        Log.v("PlaceOrderActivity", ".get() is being called");
-        //pulling menu data from DB
-        */
         //calling DB and navigating to correct collection
         db = FirebaseFirestore.getInstance();
         Docref = db.collection("menu").document("items");

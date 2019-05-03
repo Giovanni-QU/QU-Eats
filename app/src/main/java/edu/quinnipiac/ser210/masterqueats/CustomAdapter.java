@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
-
+//Created by Giovanni Greco
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private ArrayList<DataModel> dataSet;
